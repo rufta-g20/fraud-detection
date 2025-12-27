@@ -97,6 +97,33 @@ python -m unittest discover tests
 3. **Modeling**: Training tuned models in `modeling.ipynb`.
 4. **Explainability**: Interpreting decisions in `shap-explainability.ipynb`.
 
+---
+
+## 📈 Model Performance & Evaluation
+
+We evaluated our models using **Stratified 5-Fold Cross-Validation** to ensure robustness against the high class imbalance in both datasets.
+
+| Dataset | Best Model | Recall (Fraud) | PR-AUC Score |
+| :--- | :--- | :--- | :--- |
+| **E-commerce** | XGBoost (Tuned) | 56.12% | 0.6993 |
+| **Bank (Credit Card)** | XGBoost (Tuned) | 82.10% | 0.7994 |
+
+> **Key Insight**: The tuned XGBoost model provided a **62% lift in Recall** over the Logistic Regression baseline for e-commerce transactions.
+
+---
+
+## 🔍 Model Interpretability (SHAP)
+
+To move beyond "black-box" predictions, we used **SHAP (SHapley Additive exPlanations)** to identify the global and local drivers of fraud.
+
+### Global Drivers
+The most significant predictors of fraud are:
+* **Transaction Velocity**: High frequency of `device_id` (`device_freq`) and `ip_address` (`ip_freq`) within a short window.
+* **Account Age**: The `time_since_signup` feature shows a strong inverse correlation with fraud risk.
+
+### Actionable Insight
+> **MFA Recommendation**: Transactions occurring within **30 minutes** of account creation carry a significantly higher SHAP value. This suggests a need for mandatory **Multi-Factor Authentication (MFA)** for all new users during their first hour of activity.
+
 **Author:** Rufta
 
 **Date:** 2025
