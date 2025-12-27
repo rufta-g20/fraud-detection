@@ -10,10 +10,38 @@ The primary goal is to minimize financial losses due to fraudulent activities wh
 * Building scalable models that handle highly imbalanced datasets.
 
 ## 📁 Project Structure
-- `data/`: Contains raw datasets and processed features (categorized into `raw/` and `processed/`).
-- `notebooks/`: Jupyter notebooks for EDA, Feature Engineering, and Model Training.
-- `src/`: Reusable Python modules for data processing and utility functions.
-- `models/`: Storage for trained model artifacts and evaluation results.
+
+
+```text
+fraud-detection/
+├── .vscode/               # Editor settings (linting, formatting rules)
+├── .github/               # CI/CD pipelines
+│   └── workflows/         # unittests.yml: Runs tests on every push/PR
+├── data/                  # Data storage (Ignored by Git)
+│   ├── raw/               # Original, untouched datasets
+│   └── processed/         # Cleaned data ready for ML modeling
+├── notebooks/             # Step-by-step experimentation
+│   ├── eda-xxx.ipynb      # Data exploration & visualization
+│   ├── modeling.ipynb     # Model training & hyperparameter tuning
+│   └── shap-xxx.ipynb     # Explainable AI (understanding model decisions)
+├── src/                   # Core modular logic
+│   ├── __init__.py        # Makes directory a Python package
+│   └── data_preprocessing.py # IP-to-Country mapping and cleaning logic
+├── tests/                 # Quality assurance
+│   ├── __init__.py
+│   └── test_preprocessing.py # Unit tests for your merge and IP functions
+├── models/                # Saved artifacts (Pickle/Joblib files)
+├── scripts/               # One-off execution scripts or automation tasks
+├── requirements.txt       # Project library dependencies
+├── .gitignore             # Prevents large data/models from being uploaded
+└── README.md              # Project overview and documentation
+```
+
+- `data/`: Contains `raw/` (original CSVs) and `processed/` (cleaned/engineered features). 
+- `models/`: Stores serialized model artifacts (.pkl files) for deployment.
+- `src/`: Core Python modules for data processing and modeling logic.
+- `tests/`: Unit tests to ensure code reliability (e.g., IP conversion logic).
+- `notebooks/`: Experimental analysis and model development.
 - `requirements.txt`: List of dependencies required to run the project.
 
 ## 📊 Dataset Description
